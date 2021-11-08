@@ -18,7 +18,6 @@
 
  令新词为w,定义种子集为seedset=(PP,PN),其中PP代表正向种子词集，PN代表负向种子词集。词w的语义倾向值为:
 
-![img](file:///C:\Users\ming\AppData\Local\Temp\ksohtml13916\wps1.jpg) 
 
 其中，ppk∈PP,pnl∈PN,K和L分别为正向种子集和负向种子集中种子词的个数。设置阈值为θ(θ≥0)，则|Polarity(w)|> θ表明该词是正向的，
 
@@ -28,15 +27,11 @@ Polarity(w)<-θ表示该词是负向的，|Polarity(w)|≤θ表示该词是中�
 
 利用数据库，jieba，OpenHowNet库来设计，jieba分词后，利用OpenHownet计算相似度，然后存入数据库中，再利用数据库的去重，排序，查询功能来得到正向或负向情感的前50个单词(除去种子词)
 
-![img](file:///C:\Users\ming\AppData\Local\Temp\ksohtml13916\wps2.jpg)
 
 ### 具体设计：
 
 实验结果展示
 
-![img](file:///C:\Users\ming\AppData\Local\Temp\ksohtml13916\wps3.jpg)![img](file:///C:\Users\ming\AppData\Local\Temp\ksohtml13916\wps4.jpg) 
-
-![img](file:///C:\Users\ming\AppData\Local\Temp\ksohtml13916\wps5.jpg)![img](file:///C:\Users\ming\AppData\Local\Temp\ksohtml13916\wps6.jpg) 
 
 在尝试使用数据库存储后可以得到相对更加准确的结果，词条如下:
 负向词：
@@ -49,7 +44,6 @@ Polarity(w)<-θ表示该词是负向的，|Polarity(w)|≤θ表示该词是中�
 
 数据库截图:
 
-![img](file:///C:\Users\ming\AppData\Local\Temp\ksohtml13916\wps7.jpg) 
 
 
 
@@ -57,51 +51,35 @@ Polarity(w)<-θ表示该词是负向的，|Polarity(w)|≤θ表示该词是中�
 
 首先定义种子集PP
 
-![img](file:///C:\Users\ming\AppData\Local\Temp\ksohtml13916\wps8.jpg) 
+
 
 使用cursor()方法创建一个游标对象，再使用execute()方法执行SQL
 
-![img](file:///C:\Users\ming\AppData\Local\Temp\ksohtml13916\wps9.jpg) 
 
 再使用execute()方法执行SQL
 
-![img](file:///C:\Users\ming\AppData\Local\Temp\ksohtml13916\wps10.jpg) 
+
 
 使用预处理语句创建表，一个词和Polarity
 
-![img](file:///C:\Users\ming\AppData\Local\Temp\ksohtml13916\wps11.jpg) 
 
 定义函数得到词w的倾向值Polarity
 
-![img](file:///C:\Users\ming\AppData\Local\Temp\ksohtml13916\wps12.jpg) 
 
 读取数据集文件(外卖评论.csv)
 
-![img](file:///C:\Users\ming\AppData\Local\Temp\ksohtml13916\wps13.jpg) 
 
- 
 
- 
-
- 
-
- 
-
- 
-
- 
 
  
 
 之后再利用jieba分词工具对表中的数据进行分词
 
-![img](file:///C:\Users\ming\AppData\Local\Temp\ksohtml13916\wps14.jpg) 
+
 
 最后将数据库进行排序，并输出前50个正向词和负向词
 
-![img](file:///C:\Users\ming\AppData\Local\Temp\ksohtml13916\wps15.jpg) 
 
-![img](file:///C:\Users\ming\AppData\Local\Temp\ksohtml13916\wps16.jpg)
 
 
 
